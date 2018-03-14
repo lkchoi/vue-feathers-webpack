@@ -9,7 +9,7 @@ const lintStyles = ['standard', 'airbnb']
  * They are unsorted because they were grouped for the handlebars helpers
  * @param {object} data Data from questionnaire
  */
-exports.sortDependencies = function sortDependencies(data) {
+exports.sortDependencies = function sortDependencies (data) {
   const packageJsonFile = path.join(
     data.inPlace ? '' : data.destDirName,
     'package.json'
@@ -25,7 +25,7 @@ exports.sortDependencies = function sortDependencies(data) {
  * @param {string} cwd Path of the created project directory
  * @param {object} data Data from questionnaire
  */
-exports.installDependencies = function installDependencies(
+exports.installDependencies = function installDependencies (
   cwd,
   executable = 'npm',
   color
@@ -33,7 +33,7 @@ exports.installDependencies = function installDependencies(
   console.log(`\n\n# ${color('Installing project dependencies ...')}`)
   console.log('# ========================\n')
   return runCommand(executable, ['install'], {
-    cwd,
+    cwd
   })
 }
 
@@ -42,7 +42,7 @@ exports.installDependencies = function installDependencies(
  * @param {string} cwd Path of the created project directory
  * @param {object} data Data from questionnaire
  */
-exports.runLintFix = function runLintFix(cwd, data, color) {
+exports.runLintFix = function runLintFix (cwd, data, color) {
   if (data.lint && lintStyles.indexOf(data.lintConfig) !== -1) {
     console.log(
       `\n\n${color(
@@ -55,7 +55,7 @@ exports.runLintFix = function runLintFix(cwd, data, color) {
         ? ['run', 'lint', '--', '--fix']
         : ['run', 'lint', '--fix']
     return runCommand(data.autoInstall, args, {
-      cwd,
+      cwd
     })
   }
   return Promise.resolve()
@@ -65,7 +65,7 @@ exports.runLintFix = function runLintFix(cwd, data, color) {
  * Prints the final message with instructions of necessary next steps.
  * @param {Object} data Data from questionnaire.
  */
-exports.printMessage = function printMessage(data, { green, yellow }) {
+exports.printMessage = function printMessage (data, { green, yellow }) {
   const message = `
 # ${green('Project initialization finished!')}
 # ========================
@@ -77,8 +77,8 @@ To get started:
       data
     )}${lintMsg(data)}npm run dev`
   )}
-  
-Documentation can be found at https://vuejs-templates.github.io/webpack
+
+Documentation can be found at https://https://github.com/lkchoi/vue-feathers-webpack
 `
   console.log(message)
 }
@@ -88,7 +88,7 @@ Documentation can be found at https://vuejs-templates.github.io/webpack
  * containing the instruction for this step.
  * @param {Object} data Data from questionnaire.
  */
-function lintMsg(data) {
+function lintMsg (data) {
   return !data.autoInstall &&
     data.lint &&
     lintStyles.indexOf(data.lintConfig) !== -1
@@ -101,7 +101,7 @@ function lintMsg(data) {
  * containing the instruction for this step.
  * @param {Object} data Data from the questionnaire
  */
-function installMsg(data) {
+function installMsg (data) {
   return !data.autoInstall ? 'npm install (or if using yarn: yarn)\n  ' : ''
 }
 
@@ -113,7 +113,7 @@ function installMsg(data) {
  * @param {array<string>} args
  * @param {object} options
  */
-function runCommand(cmd, args, options) {
+function runCommand (cmd, args, options) {
   return new Promise((resolve, reject) => {
     const spwan = spawn(
       cmd,
@@ -122,7 +122,7 @@ function runCommand(cmd, args, options) {
         {
           cwd: process.cwd(),
           stdio: 'inherit',
-          shell: true,
+          shell: true
         },
         options
       )
@@ -134,7 +134,7 @@ function runCommand(cmd, args, options) {
   })
 }
 
-function sortObject(object) {
+function sortObject (object) {
   // Based on https://github.com/yarnpkg/yarn/blob/v1.3.2/src/config.js#L79-L85
   const sortedObject = {}
   Object.keys(object)
