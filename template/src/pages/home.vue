@@ -1,12 +1,12 @@
 {{#pug}}
 <template lang="pug">
   .hello
-    h1 {{ msg }}
+    h1 \{{ msg }}
 </template>
 {{else}}
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1>\{{ msg }}</h1>
   </div>
 </template>
 {{/pug}}
