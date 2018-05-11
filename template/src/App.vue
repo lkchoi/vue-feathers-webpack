@@ -35,12 +35,13 @@ export default {
 </script>
 
 {{#sass}}
-<style lang="sass">
-  #app
-    font-family: 'Avenir', Helvetica, Arial, sans-serif
-    text-align: center
-    color: #2c3e50
-    margin-top: 60px
+<style lang="scss">
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+  }
 </style>
 {{else}}
 <style>
